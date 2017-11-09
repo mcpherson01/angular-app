@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<head>
+  <meta charset="utf-8">
+  <title>JamesApp</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <!-- <app-root>
+    <div ng-app="myApp" ng-controller="myCtrl"> 
+
+      
+      </div>    
+  </app-root> -->
+  <div ng-app="myApp" ng-controller="myCtrl"> 
+    
+    <table class="table center" id="egh-table">
+        <td style="font-size:20px; border: 1px solid gray; font-weight:700;">ID</td>
+        <td style="font-size:20px; border: 1px solid gray; font-weight:700;">TITLE</td>
+        <td style="font-size:20px; border: 1px solid gray; font-weight:700;">BODY</td>
+        
+        <tr ng-repeat="ok in myWelcome">
+            <td style="font-size:20px; border: 1px solid gray;">{{ok.id}}</td>
+            <td style="font-size:20px;  border: 1px solid gray;">{{ok.title}}</td>
+            <td style="font-size:20px;  border: 1px solid gray;">{{ok.body}}</td>
+            <td style="font-size:20px;  border: 1px solid gray;">  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" ng-click="showDetails = ! showDetails">Show Details</button></td>
+          </tr>
+
+
+
+      
+
+  </table>
+  <div ng-repeat="ok in myWelcome">
+      
+      <div class="procedure-details" ng-class="{ 'hidden': ! showDetails }">
+          <p>Number of patient discharges: {{ok.title}}</p>
+       </div>
+
+       </div>
+
+
+
+</body>
+</html>
+
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  $http({
+    method : "GET",
+    url : "https://jsonplaceholder.typicode.com/posts"
+  }).then(function mySuccess(response) {
+    console.log(response);
+     // $scope.myWelcome = response.data;
+      $scope.myWelcome = angular.fromJson(response.data);
+    }, function myError(response) {
+      $scope.myWelcome = response.statusText;
+  });
+});
+</script>
+

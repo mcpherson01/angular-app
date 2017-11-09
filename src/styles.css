@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+#egh-table {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
+
+.egh_div {
+    width:200px;
+    height:200px;
+    background-color:red;
+}
